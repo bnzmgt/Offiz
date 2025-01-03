@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="<?php echo get_template_directory_uri(); ?>/favicon.svg" />
 <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_template_directory_uri(); ?>/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="PilihPilih" />
+<meta name="apple-mobile-web-app-title" content="Geospatica" />
 <link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/site.webmanifest" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -17,14 +17,39 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 </head>
 
 <body <?php body_class(); ?>>
 
-<div class="navbar navbar-light bg-light navbar-expand-lg z-[1] relative" role="navigation">
-    <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-        <header class="flex items-center justify-between py-4 md:py-8 relative">
+<div class="top-header bg-default py-2">
+    <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+        <p class="text-sm text-white text-right"><a href="mailto:sales@geospatica.com">sales@geospatica.com</a></p>
+    </div>
+</div>
+
+<div 
+    x-data="{ 
+        lastScroll: 0, 
+        isScrollingDown: false, 
+        isSticky: false, 
+        updateScroll() { 
+            let currentScroll = window.pageYOffset; 
+            this.isScrollingDown = currentScroll > this.lastScroll;
+            this.isSticky = currentScroll > 50; // Sticky only after 150px scroll
+            this.lastScroll = currentScroll;
+        } 
+    }" 
+    x-on:scroll.window="updateScroll"
+    :class="[
+        isSticky ? 'sticky top-0 bg-white py-2 md:py-4 ' : 'py-4 md:py-8 border border-b-[#c6cfd5]'
+    ]"
+    class="navbar navbar-light bg-light navbar-expand-lg z-[2] relative transition-all duration-300"
+    role="navigation"
+>
+    <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+        <header class="flex items-center justify-between relative">
         
             <div class="logo-top">
                 <?php if ( wp_is_mobile() ) : ?>
@@ -38,7 +63,7 @@
                         $image = get_field('header_logo', 'option');
                         if( !empty($image) ) :
                         ?>
-                            <a class="navbar-brand page-scroll" href="<?php echo home_url(); ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="header-logo img-fluid" width="171" height="36" /></a>
+                            <a class="navbar-brand page-scroll" href="<?php echo home_url(); ?>"><img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" class="header-logo img-fluid" width="200" height="36" /></a>
                         <?php endif; ?>
                 <?php endif; ?>
             </div>

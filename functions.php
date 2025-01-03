@@ -89,7 +89,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
         $classes = !empty($item->classes) ? implode(' ', $item->classes) : '';
         $output .= sprintf(
-            '<a href="%s" class="%s text-gray-800 hover:text-orange px-4 py-2 transition duration-300">',
+            '<a href="%s" class="%s text-gray-800 hover:text-default px-4 py-2 transition duration-300 uppercase text-sm tracking-wide">',
             esc_url($item->url),
             esc_attr($classes)
         );
@@ -335,7 +335,7 @@ if (function_exists('add_theme_support')) {
 // -----------------------------------------------------------------------------
 function my_theme_enqueue_styles() {
 
-    $parent_style = 'commerz-style';
+    $parent_style = 'offizt-style';
     $css_file = get_template_directory() . '/main.css';
     $version = file_exists($css_file) ? filemtime($css_file) : '1.0.0';
     //wp_enqueue_script('jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js', array(), null, true );
@@ -383,6 +383,8 @@ function load_google_fonts($field) {
         'Lato' => 'Lato',
         'Montserrat' => 'Montserrat',
         'Poppins' => 'Poppins',
+        'Jura' => 'Jura',
+        'Michroma' => 'Michroma'
     ];
 
     // Set the choices for the select field
@@ -567,9 +569,9 @@ add_action( 'after_setup_theme', 'register_html_support' );
 // -----------------------------------------------------------------------------
 require_once ( get_stylesheet_directory() . '/inc/plugin-update-checker/plugin-update-checker.php' );
     $updateChecker = Puc_v4_Factory::buildUpdateChecker(
-        'https://github.com/bnzmgt/commerz',
+        'https://github.com/bnzmgt/offizt',
         __FILE__,
-        'commerz'
+        'offizt'
     );
 
     // $updateChecker->setAuthentication( array(

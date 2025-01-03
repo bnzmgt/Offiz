@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html {
+    font-size: 16px;
+    @apply text-primary font-light leading-6;
+}
+
+.changeups {
+    box-shadow: 0 3px 45px rgba(0,0,0,.15);
+}
+
+.menu-item {
+    background-image: -webkit-linear-gradient(top, transparent 94%, #f75b3b 94%);
+    background-image: linear-gradient(180deg, transparent 94%, #f75b3b 94%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    -webkit-transition: background-size .3s ease;
+    transition: background-size .3s ease;
+
+    &:hover {
+        background-size: 100% 100%;
+    }
+}
+
 @font-face {
     font-family: 'klastera';
     src: url('asset/font/klastera.eot?27921083');
@@ -49,6 +73,21 @@
 .homepage .pricing-section .pricing-variant h4 {
     background-color: #E2E2DF;
 }
+
+.sideline:before {
+    position: absolute;
+    top: -90px;
+    right: 0;
+    width: 90vw;
+    background: #799eac;
+    content: "";
+    height: 1px;
+}
+
+main p + p {
+    @apply mt-5;
+}
+
 
 .homepage .pricing-section .pricing-variant:nth-of-type(2) h4 {
     background-color: #27AAE1;
@@ -142,5 +181,56 @@
         background-color: #fff;
         z-index: 1;
         margin: 0 -32px;
+    }
+
+    .middletag {
+        display: contents;
+    }
+    
+    .middletag:before,
+    .middletag:after {
+        content: "";
+        display: inline-block;
+        width: 5%;
+        height: 1px;
+        margin: 0 10px 0;
+        @apply bg-default;
+    }
+    
+}
+
+#scf-contact-form {
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        appearance: none;
+        outline: none;
+        border: 1px solid #c6cfd5;
+        background: #fff;
+        padding: 0 10px;
+        line-height: 47px;
+        color: #1c4058;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        display: block;
+        border: 1px solid #c6cfd5;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .req {
+        @apply text-default;
+    }
+
+    button {
+        @apply inline-block rounded-full bg-default px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base;
     }
 }

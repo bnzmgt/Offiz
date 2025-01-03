@@ -15,9 +15,9 @@ get_header(); ?>
                     $hero_schedule = get_sub_field('hero_schedule');
                 ?>
                 <?php if( $hero_items || $hero_schedule ): ?>
-                    <div class="hero-section bg-white pb-6 sm:pb-8 lg:pb-12 relative h-[90%] lg:h-screen">
+                    <div class="hero-section flex justify-center bg-white pb-6 sm:pb-8 lg:pb-12 relative h-[90%] lg:h-screen">
 
-                        <div class="mx-auto max-w-screen-xl px-4 md:px-8 md:h-full">
+                        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
                             <section class="flex flex-col-reverse justify-between gap-6 mb-4 md:mb-0 sm:gap-10 md:gap-10 md:flex-row md:items-center md:h-full">
                             
                                 <?php if( $hero_items ): ?>
@@ -35,7 +35,7 @@ get_header(); ?>
                                                     $link = $hero_item['hero_link'];
                                                     ?>
                                             <div class="flex flex-col gap-2.5 sm:flex-row justify-start">
-                                                <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" class="inline-block rounded-full bg-orange px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base"><?php echo esc_html($link['title']); ?></a>
+                                                <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" class="inline-block rounded-full bg-default px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base"><?php echo esc_html($link['title']); ?></a>
                                             </div>
                                             <?php endif; ?>
                                         </div>
@@ -44,7 +44,7 @@ get_header(); ?>
                                         <!-- Hero Item Image - start -->
                                         <div class="flex justify-end h-auto overflow-hidden xl:w-5/6">
                                             <?php if( $hero_item['hero_image'] ): ?>
-                                                <img src="<?php echo esc_url($hero_item['hero_image']); ?>" alt="Hero Image" width="450" height="508" class="h-full object-cover object-center" />
+                                                <img src="<?php echo esc_url($hero_item['hero_image']); ?>" alt="Hero Image" width="600" height="508" class="h-full object-cover object-center" />
                                             <?php endif; ?>
                                         </div>
                                         <!-- Hero Item Image - end -->
@@ -97,7 +97,7 @@ get_header(); ?>
                                     </h2>
                                 <?php endif; ?>
                                 <?php if( $about_content ): ?>
-                                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">
+                                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-base">
                                         <?php echo esc_html($about_content); ?>
                                     </p>
                                 <?php endif; ?>
@@ -261,6 +261,78 @@ get_header(); ?>
 
         <?php endwhile; ?>
     <?php endif; ?>
+
+    <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+
+            <div class="product-section">
+                <h2>Our Products</h2>
+                
+                <?php
+                // Custom Query to Get catalog_product Posts
+                $args = [
+                    'post_type'      => 'catalog_product',
+                    'posts_per_page' => 6, // Limit to 6 products (adjust as needed)
+                ];
+                $catalog_query = new WP_Query($args);
+
+                if ($catalog_query->have_posts()) :
+                ?>
+                    <div class="product-grid grid grid-cols-2 gap-10">
+                        <?php while ($catalog_query->have_posts()) : $catalog_query->the_post(); ?>
+                            <div class="product-item">
+                                <a href="<?php the_permalink(); ?>" class="product-link relative">
+                                    <!-- Single Gallery Image -->
+                                    <?php 
+                                    $gallery_images = get_field('product_images'); // Replace 'product_gallery' with your actual field name
+                                    if (!empty($gallery_images)) : 
+                                        $first_image = $gallery_images[0]; // Get the first image
+                                    ?>
+                                        <div class="product-image">
+                                            <img src="<?php echo esc_url($first_image['url']); ?>" alt="<?php echo esc_attr($first_image['alt']); ?>" />
+                                        </div>
+                                    <?php elseif (has_post_thumbnail()) : ?>
+                                        <div class="product-image">
+                                            <?php the_post_thumbnail('medium'); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <!-- Product Title -->
+                                    <h2 class="product-title"><?php the_title(); ?></h2>
+                                    
+                                    <!-- Product Price -->
+                                    <?php 
+                                    $product_price = get_field('price'); // Get price field
+                                    if ($product_price) : 
+                                    ?>
+                                        <p class="product-price"><?php echo esc_html($product_price); ?></p>
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <?php
+                        // Custom Pagination
+                        echo paginate_links([
+                            'total' => $catalog_query->max_num_pages,
+                        ]);
+                        ?>
+                    </div>
+
+                <?php
+                else :
+                    echo '<p>No products found.</p>';
+                endif;
+
+                // Reset Post Data
+                wp_reset_postdata();
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php get_footer(); ?>
