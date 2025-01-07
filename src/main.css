@@ -6,6 +6,34 @@
 html {
     font-size: 16px;
     @apply text-primary font-light leading-6;
+    
+}
+
+/* .homepage {
+    &:after {
+        background-image: url('img/ooo.svg');
+        background-size: cover;
+        background-position: bottom;
+        content: "";
+    }
+   
+} */
+
+.aboutus-section {
+    &:before {
+        background: linear-gradient(180deg, #ffe297 -35.55%, rgba(245, 138, 37, 0) 100%, #ffe195 0);
+    content: "";
+    filter: blur(150px);
+    height: 100%;
+    opacity: .8;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    }
+}
+
+.footer-links {
+    @apply ml-auto md:w-1/2;
 }
 
 .changeups {
@@ -13,6 +41,20 @@ html {
 }
 
 .menu-item {
+    background-image: -webkit-linear-gradient(top, transparent 94%, #f75b3b 94%);
+    background-image: linear-gradient(180deg, transparent 94%, #f75b3b 94%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    -webkit-transition: background-size .3s ease;
+    transition: background-size .3s ease;
+
+    &:hover {
+        background-size: 100% 100%;
+    }
+}
+
+.footnote li a {
     background-image: -webkit-linear-gradient(top, transparent 94%, #f75b3b 94%);
     background-image: linear-gradient(180deg, transparent 94%, #f75b3b 94%);
     background-size: 0% 100%;
@@ -68,7 +110,29 @@ html {
   .icon-ks-instagram:before { content: '\e809'; }
   .icon-ks-facebook:before { content: '\e80a'; }
   .icon-ks-twitter:before { content: '\e80b'; }
+  .icon-ks-mail:before { content: '\e80c'; }
+  .icon-ks-left:before { content: '\e80d'; } /* '' */
+.icon-ks-right:before { content: '\e80e'; } /* '' */
   
+.enquiry-wrapper { 
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.toggle-enquiry-button {
+    &:before {
+        content: "\e805";
+        font-family: "klastera";
+        font-size: 14px;
+        @apply text-default;
+    }
+
+    &:hover {
+        &:before {
+            @apply text-white;
+        }
+    }
+}
 
 .homepage .pricing-section .pricing-variant h4 {
     background-color: #E2E2DF;
@@ -113,18 +177,18 @@ main p + p {
     gap: 24px;
 
     a {
-        @apply border border-tosca w-9 h-9 flex items-center justify-center rounded-xl p-[5px] text-tosca;
+        @apply border border-white w-8 h-8 flex items-center justify-center rounded-xl p-[5px] text-white;
 
         &:hover {
-            @apply border-tosca bg-tosca;
+            @apply border-white bg-white;
 
             i {
-                @apply text-white;
+                @apply text-default;
             }
         }
         
         i {
-            @apply text-[20px];
+            @apply text-lg;
         }
     }
 }
@@ -199,10 +263,12 @@ main p + p {
     
 }
 
-#scf-contact-form {
+#scf-contact-form,
+.enquiry-form {
     label {
         display: block;
         margin-bottom: 5px;
+        @apply text-sm;
     }
 
     input {
@@ -231,6 +297,51 @@ main p + p {
     }
 
     button {
-        @apply inline-block rounded-full bg-default px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base;
+        @apply inline-block rounded-full bg-default hover:bg-default-hover px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100 md:text-base;
+    }
+}
+
+.footnote {
+    @apply space-y-2;
+
+    li {
+        @apply flex justify-center md:justify-start;
+
+        .icon {
+            padding-right: 10px;
+        }
+
+    }
+    .location {
+        .icon {
+            &:before {
+                content: "\e802";
+                font-family: "klastera";
+                font-size: 16px;
+                display: inline-block;
+            }
+        }
+    }
+
+    .phone {
+        .icon {
+            &:before {
+                content: "\e808";
+                font-family: "klastera";
+                font-size: 16px;
+                display: inline-block;
+            }
+        }
+    }
+
+    .email {
+        .icon {
+            &:before {
+                content: "\e80c";
+                font-family: "klastera";
+                font-size: 16px;
+                display: inline-block;
+            }
+        }
     }
 }

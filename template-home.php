@@ -35,7 +35,7 @@ get_header(); ?>
                                                     $link = $hero_item['hero_link'];
                                                     ?>
                                             <div class="flex flex-col gap-2.5 sm:flex-row justify-start">
-                                                <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" class="inline-block rounded-full bg-default px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base"><?php echo esc_html($link['title']); ?></a>
+                                                <a href="<?php echo esc_url($link['url']); ?>" target="<?php echo esc_attr($link['target']); ?>" class="inline-block rounded-full bg-default hover:bg-default-hover px-8 py-3 text-center text-sm font-medium text-white outline-none transition duration-100  md:text-base"><?php echo esc_html($link['title']); ?></a>
                                             </div>
                                             <?php endif; ?>
                                         </div>
@@ -88,7 +88,7 @@ get_header(); ?>
                 $about_heading_title = get_sub_field('about_heading_title');
                 $about_content = get_sub_field('about_content');
                 if( $about_heading_title || $about_content ): ?>
-                    <div class="aboutus-section bg-white py-6 sm:py-8 lg:py-20">
+                    <div class="aboutus-section bg-white py-6 sm:py-8 lg:py-20 relative">
                         <div class="mx-auto max-w-screen-lg px-4 md:px-8">
                             <div class="mb-8 lg:mb-12">
                                 <?php if( $about_heading_title ): ?>
@@ -115,7 +115,7 @@ get_header(); ?>
                 $service_section_title = get_sub_field('service_section_title');
                 if( $service_main_image || $service_items ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
-                        <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+                        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
                             <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
                                 <?php echo esc_html($service_section_title); ?>
                             </h2>
@@ -266,7 +266,7 @@ get_header(); ?>
         <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
 
             <div class="product-section">
-                <h2>Our Products</h2>
+                <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Our Products</h2>
                 
                 <?php
                 // Custom Query to Get catalog_product Posts
@@ -298,7 +298,7 @@ get_header(); ?>
                                     <?php endif; ?>
 
                                     <!-- Product Title -->
-                                    <h2 class="product-title"><?php the_title(); ?></h2>
+                                    <h2 class="product-title text-center"><?php the_title(); ?></h2>
                                     
                                     <!-- Product Price -->
                                     <?php 

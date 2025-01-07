@@ -1,4 +1,4 @@
-<footer class="bg-secondary">
+<footer class="bg-secondary border-t-4 border-t-default">
    
     <div class="pt-12 lg:pt-16">
         <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
@@ -32,12 +32,12 @@
                         if( $footer_info ): ?>
                             <div class="text-center md:text-right text-sm text-white w-full">
                                 <?php if( $footer_info['basic_footer_links'] ): ?>
-                                    <div class="text-white sm:pr-8"><?php echo wp_kses_post($footer_info['basic_footer_links']); ?></div>
+                                    <div class="text-white footer-links sm:pr-8"><?php echo wp_kses_post($footer_info['basic_footer_links']); ?></div>
                                 <?php endif; ?>
                             </div>
-                            <div class="text-center md:text-right text-sm text-white w-full">
+                            <div class="text-center md:text-left text-sm w-full">
                                 <?php if( $footer_info['basic_footer_address'] ): ?>
-                                    <div class="text-white"><?php echo wp_kses_post($footer_info['basic_footer_address']); ?></div>
+                                    <div class="text-white md:ml-11"><?php echo wp_kses_post($footer_info['basic_footer_address']); ?></div>
                                 <?php endif; ?>
                             </div>
                         <?php endif; 
@@ -46,10 +46,13 @@
                 </div>
             </div>
 
-            <div class="border-t border-t-white py-8 text-center md:text-left text-xs text-white">
+            <div class="border-t border-t-[#486f88] py-8 text-center md:text-left text-sm text-white">
                 <div class="grid md:grid-cols-2 gap-12">
-                    <?php the_field('basic_copyright_text', 'option'); ?>
-                    <div class="footer-social flex justify-center md:justify-start items-center"> 
+                    <div class="flex items-center justify-center md:justify-start">
+                        <?php the_field('basic_copyright_text', 'option'); ?>
+                    </div>
+                    
+                    <div class="footer-social flex justify-center md:justify-end items-center"> 
                             <?php
                                 // reset choices
                                 $field['choices'] = array();
@@ -70,7 +73,7 @@
                                         // append to choices
                                         $field['choices'][ $value ] = $label; ?>
 
-                                        <a href="<?php echo $label; ?>" target="_blank" rel="noopener" aria-label="Jogjaestate <?php echo $value; ?>" class="link <?php echo $value; ?>">
+                                        <a href="<?php echo $label; ?>" target="_blank" rel="noopener" aria-label="<?php echo $value; ?>" class="link <?php echo $value; ?>">
                                             <i class="icon-ks-<?php echo $value; ?>"></i>
                                         </a>
 
@@ -80,7 +83,7 @@
                                 // return the field
                                 //return $field;
                             ?>
-                        </div>
+                       
                                 
                     </div>
                 </div>

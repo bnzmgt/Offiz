@@ -24,7 +24,7 @@ get_header();
     </div>
     <!-- end .page-intro -->
 
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <div class="bg-white py-6 sm:py-8 lg:py-16">
         <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
 
             <main>                

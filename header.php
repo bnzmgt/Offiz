@@ -25,7 +25,16 @@
 
 <div class="top-header bg-default py-2">
     <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
-        <p class="text-sm text-white text-right"><a href="mailto:sales@geospatica.com">sales@geospatica.com</a></p>
+        <div class="flex items-center justify-end gap-4">
+            <p class="text-sm text-white text-right">
+            <a href="tel:<?php the_field('basic_phone', 'option'); ?>">
+                <i class="icon-ks-telephone leading-[18px]"></i><?php the_field('basic_phone', 'option'); ?></a>
+            </p>
+            <p class="text-sm text-white text-right">
+                <a href="mailto:<?php the_field('basic_email', 'option'); ?>"><i class="icon-ks-mail leading-[18px]"></i>
+                <?php the_field('basic_email', 'option'); ?></a>
+            </p>
+        </div>
     </div>
 </div>
 
