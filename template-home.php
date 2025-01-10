@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-<div class="homepage font-sans -mt-[calc(6rem)]">
+<div class="homepage font-sans md:-mt-[calc(6rem)]">
     <?php if( have_rows('content_info') ): ?>
         <?php while ( have_rows('content_info') ) : the_row(); ?>
 
@@ -88,7 +88,7 @@ get_header(); ?>
                 $about_heading_title = get_sub_field('about_heading_title');
                 $about_content = get_sub_field('about_content');
                 if( $about_heading_title || $about_content ): ?>
-                    <div class="aboutus-section bg-white py-6 sm:py-8 lg:py-20 relative">
+                    <div class="aboutus-section bg-white py-6 sm:py-8 lg:py-20 relative" data-aos="fade-up" data-aos-offset="300">
                         <div class="mx-auto max-w-screen-lg px-4 md:px-8">
                             <div class="mb-8 lg:mb-12">
                                 <?php if( $about_heading_title ): ?>
@@ -110,29 +110,40 @@ get_header(); ?>
             <?php if( get_row_layout() == 'services' ): ?>
                 <?php 
                 $service_main_image = get_sub_field('service_main_image');
+                $service_main_footage = get_sub_field('service_main_footage');
                 $service_items = get_sub_field('service_item');
                 $service_link_page = get_sub_field('service_link_page');
                 $service_section_title = get_sub_field('service_section_title');
-                if( $service_main_image || $service_items ): ?>
+                if( $service_main_image || $service_items || $service_main_footage ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
                         <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
                             <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
                                 <?php echo esc_html($service_section_title); ?>
                             </h2>
                             <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-                                <div>
-                                    <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
-                                        <?php if( $service_main_image ): ?>
-                                            <img src="<?php echo esc_url($service_main_image); ?>" alt="Service Main Image" class="h-full w-full object-cover object-center" />
+                                
+
+                                <?php if ($service_main_image || $service_main_footage): ?>
+                                    <div class="dotbg" data-aos="fade-right" data-aos-offset="300">
+                                        <?php if ($service_main_image): ?>
+                                            <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
+                                                <img src="<?php echo esc_url($service_main_image); ?>" alt="Service Main Image" class="h-full w-full object-cover object-center" />
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if ($service_main_footage): ?>
+                                            <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto footage">
+                                                <?php echo $service_main_footage; ?>
+                                            </div>
                                         <?php endif; ?>
                                     </div>
-                                </div>
+                                <?php endif; ?>
 
                                 <?php if( $service_items ): ?>
-                                <div>
+                                <div data-aos="fade-left" data-aos-offset="300">
                                     <?php foreach( $service_items as $service_item ): ?>
                                         <div class="flex gap-4 md:gap-6 mb-6">
-                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-orange text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
+                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-default text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                                 <?php if( $service_item['service_item_image'] ): ?>
                                                     <img src="<?php echo esc_url($service_item['service_item_image']); ?>" alt="<?php echo esc_url($service_item['service_item_title']); ?>" class="w-8 h-8" />
                                                 <?php endif; ?>
@@ -278,10 +289,10 @@ get_header(); ?>
 
                 if ($catalog_query->have_posts()) :
                 ?>
-                    <div class="product-grid grid grid-cols-2 gap-10">
+                    <div class="product-grid grid grid-cols-2 gap-5 md:gap-10">
                         <?php while ($catalog_query->have_posts()) : $catalog_query->the_post(); ?>
-                            <div class="product-item">
-                                <a href="<?php the_permalink(); ?>" class="product-link relative">
+                            <div class="product-item" data-aos="fade-up" data-aos-offset="300">
+                                <a href="<?php the_permalink(); ?>" class="product-link relative hover:shadow-md inline-block rounded-lg">
                                     <!-- Single Gallery Image -->
                                     <?php 
                                     $gallery_images = get_field('product_images'); // Replace 'product_gallery' with your actual field name
@@ -298,7 +309,7 @@ get_header(); ?>
                                     <?php endif; ?>
 
                                     <!-- Product Title -->
-                                    <h2 class="product-title text-center"><?php the_title(); ?></h2>
+                                    <h2 class="product-title text-center text-lg font-semibold leading-7 text-default hover:text-default-hover my-5"><?php the_title(); ?></h2>
                                     
                                     <!-- Product Price -->
                                     <?php 

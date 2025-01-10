@@ -12,12 +12,21 @@
 <meta name="apple-mobile-web-app-title" content="Geospatica" />
 <link rel="manifest" href="<?php echo get_template_directory_uri(); ?>/site.webmanifest" />
 
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <?php 
+    $header_script = get_field('basic_script', 'option');
+    if( $header_script && !empty($header_script['basic_script_header']) ): ?>
+        <?php echo $header_script['basic_script_header']; ?>
+<?php endif; ?>
 
 </head>
 
@@ -25,7 +34,7 @@
 
 <div class="top-header bg-default py-2">
     <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
-        <div class="flex items-center justify-end gap-4">
+        <div class="flex items-center justify-center md:justify-end gap-4">
             <p class="text-sm text-white text-right">
             <a href="tel:<?php the_field('basic_phone', 'option'); ?>">
                 <i class="icon-ks-telephone leading-[18px]"></i><?php the_field('basic_phone', 'option'); ?></a>
@@ -52,7 +61,7 @@
     }" 
     x-on:scroll.window="updateScroll"
     :class="[
-        isSticky ? 'sticky top-0 bg-white py-2 md:py-4 ' : 'py-4 md:py-8 border border-b-[#c6cfd5]'
+        isSticky ? 'sticky top-0 bg-white py-2 md:py-4 ' : 'py-4 md:py-8 md:border md:border-b-[#c6cfd5]'
     ]"
     class="navbar navbar-light bg-light navbar-expand-lg z-[2] relative transition-all duration-300"
     role="navigation"
@@ -92,13 +101,22 @@
             ?>
             </div>
 
-            <button id="menu-toggle" type="button" class="z-[1] inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-                </svg>
-                Menu
-            </button>
-        
+            <button 
+                id="menu-toggle" 
+                type="button" 
+                class="z-[1] inline-flex items-center gap-2 rounded-lg px-2.5 py-2 text-sm font-semibold text-gray-500 ring-indigo-300 hover:bg-transparent focus-visible:ring active:text-gray-700 md:text-base lg:hidden"
+                x-data="{ open: false }"
+                @click="open = !open"
+            >
+                <template x-if="!open">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-180" viewBox="0 0 20 20" fill="#d30c36">
+                        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    </svg>
+                </template>
+                <template x-if="open">
+                    <svg height="20px" class="transition-all" viewBox="0 0 512 512" fill="#d30c36" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M437.5,386.6L306.9,256l130.6-130.6c14.1-14.1,14.1-36.8,0-50.9c-14.1-14.1-36.8-14.1-50.9,0L256,205.1L125.4,74.5  c-14.1-14.1-36.8-14.1-50.9,0c-14.1,14.1-14.1,36.8,0,50.9L205.1,256L74.5,386.6c-14.1,14.1-14.1,36.8,0,50.9  c14.1,14.1,36.8,14.1,50.9,0L256,306.9l130.6,130.6c14.1,14.1,36.8,14.1,50.9,0C451.5,423.4,451.5,400.6,437.5,386.6z"/></svg>
+                </template>
+            </button>      
         </header>
     </div>
 </div>

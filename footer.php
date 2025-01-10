@@ -99,6 +99,16 @@ jQuery(document).ready(function($) {
 });
 </script>
 
+<script>
+  AOS.init();
+</script>
+
+<?php 
+    $footer_script = get_field('basic_script', 'option');
+    if( $footer_script && !empty($footer_script['basic_footer_script']) ): ?>
+        <?php echo ($footer_script['basic_footer_script']); ?>
+<?php endif; ?>
+
 <?php wp_footer(); ?>
 
 </body>
