@@ -23,7 +23,7 @@ get_header(); ?>
                                 <?php if( $hero_items ): ?>
                                     <?php foreach( $hero_items as $hero_item ): ?>
                                         <!-- Hero Item Content - start -->
-                                        <div class="flex flex-col justify-center sm:text-center lg:py-12 md:text-left xl:w-4/6 xl:py-24">
+                                        <div class="flex flex-col justify-center sm:text-center lg:py-12 md:text-left xl:w-4/6 xl:py-24" data-aos="fade-right" data-aos-offset="300">
                                             <?php if( $hero_item['hero_heading'] ): ?>
                                                 <h1 class="mb-8 text-4xl font-bold text-primary sm:text-5xl md:mb-12 md:text-6xl"><?php echo esc_html($hero_item['hero_heading']); ?></h1>
                                             <?php endif; ?>
@@ -42,7 +42,7 @@ get_header(); ?>
                                         <!-- Hero Item Content - end -->
 
                                         <!-- Hero Item Image - start -->
-                                        <div class="flex justify-end h-auto overflow-hidden xl:w-5/6">
+                                        <div class="flex justify-end h-auto overflow-hidden xl:w-5/6" data-aos="fade-left" data-aos-offset="300">
                                             <?php if( $hero_item['hero_image'] ): ?>
                                                 <img src="<?php echo esc_url($hero_item['hero_image']); ?>" alt="Hero Image" width="600" height="508" class="h-full object-cover object-center" />
                                             <?php endif; ?>
@@ -87,7 +87,8 @@ get_header(); ?>
                 <?php 
                 $about_heading_title = get_sub_field('about_heading_title');
                 $about_content = get_sub_field('about_content');
-                if( $about_heading_title || $about_content ): ?>
+                $about_main_image = get_sub_field('about_main_image');
+                if( $about_heading_title || $about_content || $about_main_image ): ?>
                     <div class="aboutus-section bg-white py-6 sm:py-8 lg:py-20 relative" data-aos="fade-up" data-aos-offset="300">
                         <div class="mx-auto max-w-screen-lg px-4 md:px-8">
                             <div class="mb-8 lg:mb-12">
@@ -97,11 +98,17 @@ get_header(); ?>
                                     </h2>
                                 <?php endif; ?>
                                 <?php if( $about_content ): ?>
-                                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-base">
+                                    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-base !leading-7">
                                         <?php echo esc_html($about_content); ?>
                                     </p>
                                 <?php endif; ?>
                             </div>
+
+                            <?php if ($about_main_image): ?>
+                                <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
+                                    <img src="<?php echo esc_url($about_main_image); ?>" alt="Service Main Image" class="h-full w-full object-cover object-center" />
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -120,9 +127,7 @@ get_header(); ?>
                             <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
                                 <?php echo esc_html($service_section_title); ?>
                             </h2>
-                            <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
-                                
-
+                            <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">                               
                                 <?php if ($service_main_image || $service_main_footage): ?>
                                     <div class="dotbg" data-aos="fade-right" data-aos-offset="300">
                                         <?php if ($service_main_image): ?>
@@ -140,32 +145,32 @@ get_header(); ?>
                                 <?php endif; ?>
 
                                 <?php if( $service_items ): ?>
-                                <div data-aos="fade-left" data-aos-offset="300">
-                                    <?php foreach( $service_items as $service_item ): ?>
-                                        <div class="flex gap-4 md:gap-6 mb-6">
-                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-default text-white shadow-lg md:h-16 md:w-16 md:rounded-xl">
-                                            <?php if (isset($service_item['service_item_image']) && $service_item['service_item_image']): ?>
-                                                <img 
-                                                    src="<?php echo esc_url($service_item['service_item_image']); ?>" 
-                                                    alt="<?php echo isset($service_item['service_item_title']) ? esc_attr($service_item['service_item_title']) : ''; ?>" 
-                                                    class="w-16 h-16" 
-                                                />
-                                            <?php endif; ?>
-
-                                            </div>
-
-                                            <div>
-                                                <?php if( $service_item['service_title_item'] ): ?>
-                                                    <h3 class="mb-2 text-lg font-semibold md:text-xl"><?php echo esc_html($service_item['service_title_item']); ?></h3>
+                                    <div data-aos="fade-left" data-aos-offset="300">
+                                        <?php foreach( $service_items as $service_item ): ?>
+                                            <div class="flex gap-4 md:gap-6 mb-6">
+                                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-default text-white shadow-lg md:h-16 md:w-16 md:rounded-xl">
+                                                <?php if (isset($service_item['service_item_image']) && $service_item['service_item_image']): ?>
+                                                    <img 
+                                                        src="<?php echo esc_url($service_item['service_item_image']); ?>" 
+                                                        alt="<?php echo isset($service_item['service_item_title']) ? esc_attr($service_item['service_item_title']) : ''; ?>" 
+                                                        class="w-16 h-16" 
+                                                    />
                                                 <?php endif; ?>
-                                                <?php if( $service_item['service_item_description'] ): ?>
-                                                    <p class="mb-2 text-gray-500"><?php echo esc_html($service_item['service_item_description']); ?></p>
-                                                <?php endif; ?>
-                                                <a href="#" class="hidden font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+
+                                                </div>
+
+                                                <div>
+                                                    <?php if( $service_item['service_title_item'] ): ?>
+                                                        <h3 class="mb-2 text-lg font-semibold md:text-xl"><?php echo esc_html($service_item['service_title_item']); ?></h3>
+                                                    <?php endif; ?>
+                                                    <?php if( $service_item['service_item_description'] ): ?>
+                                                        <p class="mb-2 text-gray-500"><?php echo esc_html($service_item['service_item_description']); ?></p>
+                                                    <?php endif; ?>
+                                                    <a href="#" class="hidden font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                             

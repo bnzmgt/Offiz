@@ -60,10 +60,8 @@
         } 
     }" 
     x-on:scroll.window="updateScroll"
-    :class="[
-        isSticky ? 'sticky top-0 bg-white py-2 md:py-4 ' : 'py-4 md:py-8 md:border md:border-b-[#c6cfd5]'
-    ]"
-    class="navbar navbar-light bg-light navbar-expand-lg z-[2] relative transition-all duration-300"
+    :class="[isSticky ? 'sticky top-0 bg-white py-2 md:py-4 ' : 'py-4 md:py-8']"
+    class="navbar navbar-light bg-light navbar-expand-lg z-[2] relative transition-all duration-300 bg-white"
     role="navigation"
 >
     <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">

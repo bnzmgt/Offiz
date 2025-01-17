@@ -5,7 +5,7 @@
 
 html {
     font-size: 16px;
-    @apply text-primary font-light leading-6;
+    @apply text-primary font-light leading-7;
     
 }
 
@@ -35,6 +35,10 @@ html {
     padding-bottom: 4.5rem;
     padding-right: 4.5rem;
     padding-top: 4.5rem;
+}
+
+.hero-section {
+    background: #f9f5f2 radial-gradient(circle, #f2f4f9, #f9f5f2);
 }
 
 .aboutus-section {
