@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-<div class="homepage font-sans md:-mt-[calc(6rem)]">
+<div class="homepage font-sans lg:-mt-[calc(6rem)]">
     <?php if( have_rows('content_info') ): ?>
         <?php while ( have_rows('content_info') ) : the_row(); ?>
 
@@ -17,7 +17,7 @@ get_header(); ?>
                 <?php if( $hero_items || $hero_schedule ): ?>
                     <div class="hero-section flex justify-center bg-white pb-6 sm:pb-8 lg:pb-12 relative h-[90%] lg:h-screen">
 
-                        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+                        <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
                             <section class="flex flex-col-reverse justify-between gap-6 mb-4 md:mb-0 sm:gap-10 md:gap-10 md:flex-row md:items-center md:h-full">
                             
                                 <?php if( $hero_items ): ?>
@@ -116,7 +116,7 @@ get_header(); ?>
                 $service_section_title = get_sub_field('service_section_title');
                 if( $service_main_image || $service_items || $service_main_footage ): ?>
                     <div class="services-section bg-white py-6 sm:py-8 lg:py-20">
-                        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+                        <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
                             <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
                                 <?php echo esc_html($service_section_title); ?>
                             </h2>
@@ -143,10 +143,15 @@ get_header(); ?>
                                 <div data-aos="fade-left" data-aos-offset="300">
                                     <?php foreach( $service_items as $service_item ): ?>
                                         <div class="flex gap-4 md:gap-6 mb-6">
-                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-default text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
-                                                <?php if( $service_item['service_item_image'] ): ?>
-                                                    <img src="<?php echo esc_url($service_item['service_item_image']); ?>" alt="<?php echo esc_url($service_item['service_item_title']); ?>" class="w-8 h-8" />
-                                                <?php endif; ?>
+                                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-default text-white shadow-lg md:h-16 md:w-16 md:rounded-xl">
+                                            <?php if (isset($service_item['service_item_image']) && $service_item['service_item_image']): ?>
+                                                <img 
+                                                    src="<?php echo esc_url($service_item['service_item_image']); ?>" 
+                                                    alt="<?php echo isset($service_item['service_item_title']) ? esc_attr($service_item['service_item_title']) : ''; ?>" 
+                                                    class="w-16 h-16" 
+                                                />
+                                            <?php endif; ?>
+
                                             </div>
 
                                             <div>
@@ -169,6 +174,84 @@ get_header(); ?>
                                     <a href="<?php echo esc_url($service_link_page['url']); ?>" class="flex items-center mx-auto max-w-fit rounded-full bg-transparent border border-blue-light text-blue-light px-8 py-3 text-center text-sm font-medium outline-none hover:bg-blue-light hover:text-white transition duration-100 md:text-base"><?php echo esc_html($service_link_page['title']); ?></a>
                                 </div>
                             <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if( get_row_layout() == 'highlight' ): ?>
+                <?php 
+                $highlight_main_image = get_sub_field('highlight_main_image');
+                $highlight_main_footage = get_sub_field('highlight_main_footage');
+                $highlight_items = get_sub_field('highlight_item');
+                $highlight_link_page = get_sub_field('highlight_link_page');
+                $highlight_section_title = get_sub_field('highlight_section_title');
+                $highlight_title = get_sub_field('highlight_title');
+                if( $highlight_main_image || $highlight_items || $highlight_main_footage ): ?>
+                    <div class="highlight-section bg-white py-6 sm:py-8 lg:py-20">
+                        <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
+                            
+                            <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 relative z-[1]">
+                                
+
+                                <?php if ($highlight_main_image || $highlight_main_footage): ?>
+                                    <div class="dotbg" data-aos="fade-right" data-aos-offset="300">
+                                        <?php if ($highlight_main_image): ?>
+                                            <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
+                                                <img src="<?php echo esc_url($highlight_main_image); ?>" alt="Service Main Image" class="h-full w-full object-cover object-center" />
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if ($highlight_main_footage): ?>
+                                            <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto footage">
+                                                <?php echo $highlight_main_footage; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if( $highlight_items ): ?>
+                                    <div data-aos="fade-left" data-aos-offset="300">
+                                        <h4><?php echo esc_html($highlight_title); ?></h4>
+                                        <h2 class="mb-8 text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">
+                                            <?php echo esc_html($highlight_section_title); ?>
+                                        </h2>
+                                        <?php foreach( $highlight_items as $highlight_item ): ?>
+                                            <div class="flex gap-4 md:gap-6 mb-6">
+                                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg  text-white shadow-lg md:h-16 md:w-16 md:rounded-xl">
+                                                <?php if (isset($highlight_item['highlight_item_image']) && $highlight_item['highlight_item_image']): ?>
+                                                    <img 
+                                                        src="<?php echo esc_url($highlight_item['highlight_item_image']); ?>" 
+                                                        alt="<?php echo isset($highlight_item['highlight_item_title']) ? esc_attr($highlight_item['highlight_item_title']) : ''; ?>" 
+                                                        class="w-16 h-16" 
+                                                    />
+                                                <?php endif; ?>
+
+                                                </div>
+
+                                                <div>
+                                                    <?php if( $highlight_item['highlight_title_item'] ): ?>
+                                                        <h3 class="mb-2 text-lg font-semibold md:text-xl"><?php echo esc_html($highlight_item['highlight_title_item']); ?></h3>
+                                                    <?php endif; ?>
+                                                    <?php if( $highlight_item['highlight_item_description'] ): ?>
+                                                        <p class="mb-2 text-gray-500"><?php echo esc_html($highlight_item['highlight_item_description']); ?></p>
+                                                    <?php endif; ?>
+                                                    <a href="#" class="hidden font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+
+                                        <?php if( $highlight_link_page ): ?>
+                                            <div class="mt-10">
+                                                <a href="<?php echo esc_url($highlight_link_page['url']); ?>" class="link-more flex items-center max-w-fit rounded-full bg-transparent border border-default text-default px-6 py-2 text-right text-sm font-medium outline-none hover:bg-default hover:text-white transition duration-100 font-sans">
+                                                    <?php echo esc_html($highlight_link_page['title']); ?>
+                                                </a>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>                                    
+                                <?php endif; ?>                               
+                            </div>
+                                                        
                         </div>
                     </div>
                 <?php endif; ?>
@@ -274,7 +357,7 @@ get_header(); ?>
     <?php endif; ?>
 
     <div class="bg-white py-6 sm:py-8 lg:py-12">
-        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+        <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
 
             <div class="product-section">
                 <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Our Products</h2>

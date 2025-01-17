@@ -1,7 +1,7 @@
 <footer class="bg-secondary border-t-4 border-t-default">
    
     <div class="pt-12 lg:pt-16">
-        <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+        <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
             <div class="mb-8 grid md:grid-cols-2 gap-12">
                 <div class="footer-info">
                     <?php 
@@ -32,7 +32,7 @@
                         if( $footer_info ): ?>
                             <div class="text-center md:text-right text-sm text-white w-full">
                                 <?php if( $footer_info['basic_footer_links'] ): ?>
-                                    <div class="text-white footer-links sm:pr-8"><?php echo wp_kses_post($footer_info['basic_footer_links']); ?></div>
+                                    <div class="text-white footer-links sm:pr-8 md:pr-0"><?php echo wp_kses_post($footer_info['basic_footer_links']); ?></div>
                                 <?php endif; ?>
                             </div>
                             <div class="text-center md:text-left text-sm w-full">

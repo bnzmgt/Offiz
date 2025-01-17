@@ -37,23 +37,21 @@ html {
     padding-top: 4.5rem;
 }
 
-
-
 .aboutus-section {
-    &:before {
+    /* &:before {
         background: linear-gradient(180deg, #ffe297 -35.55%, rgba(245, 138, 37, 0) 100%, #ffe195 0);
-    content: "";
-    filter: blur(150px);
-    height: 100%;
-    opacity: .8;
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-    }
+        content: "";
+        filter: blur(150px);
+        height: 100%;
+        opacity: .8;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    } */
 }
 
 .footer-links {
-    @apply ml-auto md:w-1/2;
+    @apply ml-auto lg:w-1/2;
 }
 
 .changeups {
@@ -181,6 +179,20 @@ html {
         content: "\e810";
         font-family: "klastera";
         @apply text-default text-xs px-2;
+    }
+}
+
+.link-more {
+    &:after {
+        content: "\e810";
+        font-family: "klastera";
+        @apply text-default text-xs px-2;
+    }
+
+    &:hover {
+        &:after {
+            @apply text-white text-xs px-2;
+        }
     }
 }
 
@@ -433,14 +445,18 @@ main p + p {
 /* product detail - feature */
 .feature-content {
     .feature-item {
-        @apply border-b border-primary border-dotted grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[200px,1fr] gap-4 py-4;
+        @apply border-b border-primary border-dotted grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[200px,1fr] gap-4 py-4;
     
         .item-title {
             @apply text-sm text-[#212636] font-semibold leading-5;
         }
     
         .item-info {
-            @apply text-sm text-[#667085] font-normal leading-5 mt-0;
+            @apply text-sm text-[#667085] font-normal leading-5 mt-0 md:text-right;
+        }
+
+        &.heading {
+            @apply grid grid-cols-1;
         }
     }
 }

@@ -11,7 +11,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 //sans: ['Outfit', 'sans-serif'],
-                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+                sans: ['Outfit', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 'primary': '#364D59',

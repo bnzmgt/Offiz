@@ -33,7 +33,7 @@
 <body <?php body_class(); ?>>
 
 <div class="top-header bg-default py-2">
-    <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+    <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
         <div class="flex items-center justify-center md:justify-end gap-4">
             <p class="text-sm text-white text-right">
             <a href="tel:<?php the_field('basic_phone', 'option'); ?>">
@@ -66,7 +66,7 @@
     class="navbar navbar-light bg-light navbar-expand-lg z-[2] relative transition-all duration-300"
     role="navigation"
 >
-    <div class="container w-11/12 lg:w-9/12 mx-auto px-4 md:px-8">
+    <div class="container w-11/12 xl:w-9/12 mx-auto px-4 md:px-8">
         <header class="flex items-center justify-between relative">
         
             <div class="logo-top">
